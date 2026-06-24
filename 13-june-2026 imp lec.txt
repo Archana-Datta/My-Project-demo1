@@ -1,0 +1,76 @@
+New user
+1. Register --> profile (name, contact, dob)
+	Profile(user) : userId, name, contact, dob(LocalDate), nickname, Payment_Details(pancard no)
+	masking --> partial(****8769), full masking (****)
+	
+	Payment_Details:
+	 pancoard. accno, kyc
+	 
+Eligibility of client: 
+	1. create "/user/eligible" in BrainworksEligibilityServie
+	2. call profile service and get user details if policy no of user match with any policy no in users database. 
+	3. if policy is active, if matches proceed to finacial claim
+	
+	=======================================================
+	1. Go to jira and check the ticket. Discription. service name
+	2. Go BrainworksEligibilityServie --> main/master  --> may_month_branch from main/master --> feature branch (name = ticketnumber_may_eligibility_profile)
+	3. Intellij (IDe intellij/VS code) --> BrainworksEligibilityServie clone this service and open projeect in intellij 
+	4. use git checkout to go to my branch( ticketnumber_may_eligibility)
+	
+	======================from scratch:
+	1. go to github create : BrainworksEligibilityServie inside this create freature branch from main and start making changes in ticketnumber_may_eligibility branch
+	======================================================
+	5. create controller : @RestController
+				
+				@Autowire
+				private UserService userService;
+	
+				@PostMapping("/user/eligible")
+				public Boolean userEligibility(@RequestBody User user){
+					boolean isUserEligible = userService.getUserEligibiloity(user);
+				}	
+	
+	6. create service method and implement business logic
+	
+	
+		@Service
+		public class UserEligibilityService{
+			@Autowire 
+			UserRepository userRepo;
+			
+			publi static final HURRAY = "Hurray";
+			
+			boolean isUserEligible(User userDto){
+				User user = userRepo.getUserByPolicyNumber(user.getPolicyNumber(), String str)l
+				str="Hurray";
+				if(userDto.getPolicyClaimDate()-user.getPolicyStartDate>365){
+					return true;
+				}
+				return false;
+			}
+
+			User getUserProfileDetails(){
+			
+			
+			
+			
+	7. create Repository using JAPRepositiry
+		@Pepository
+		public UserRepository(){
+		
+			User getUserByPolicyNumber(Long policyNumber);
+			{
+			
+			
+			
+			
+================================================
+ResponseCode:
+200: ok
+201: created
+405: method not found
+400: bad request
+401: unauthorized
+403: 
+404: not found
+500: Internal server error
